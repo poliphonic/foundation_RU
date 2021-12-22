@@ -5,6 +5,7 @@
 # вычислите рентабельность выручки (соотношение прибыли к выручке).
 # Далее запросите численность сотрудников фирмы и определите прибыль
 # фирмы в расчете на одного сотрудника.
+
 revenue = int(input('The revenue of your company is '))
 cost = int(input('The cost of your company is '))
 if revenue > cost:
