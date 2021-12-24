@@ -10,4 +10,4 @@
 #         max_num = current_digit
 # print(max_num)
 
-print(max([int(char) for char in list(input())]))
+print(max(list(input())))
