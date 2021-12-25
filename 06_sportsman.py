@@ -13,6 +13,7 @@
 # 5-й день: 2,93
 # 6-й день: 3,22
 # Ответ: на 6-й день спортсмен достиг результата — не менее 3 км.
+
 distance, goal = int(input()), int(input())
 day = 1
 while distance < goal:
