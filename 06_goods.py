@@ -34,11 +34,14 @@ while ans == 'д':
         seq.append((cnt, {'название': name, 'цена': price,
                           'количество': quantity, 'eд': unit}))
     ans = input('\nВведете еще три товара? (д/н) ')
+
 goods = {key: [] for key in seq[0][1].keys()}
 for _, d in seq:
     for key, value in d.items():
         goods[key].append(value)
+
 if len(set(goods['eд'])) == 1:
     goods['eд'] = list(set(goods['eд']))
+
 print()
 pprint(goods, sort_dicts=False)

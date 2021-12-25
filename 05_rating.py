@@ -17,8 +17,11 @@ if num in line or line[0] > num > line[-1]:
     while line[ind] < num:
         ind -= 1
     line.insert(ind + 1, num)
+
 elif num > line[0]:
     line.insert(0, num)
+
 else:
     line.append(num)
+
 print(*line, sep=', ')
