@@ -6,5 +6,4 @@
 seq = input().split()
 for ind in range(0, len(seq) - 1, 2):
     seq[ind], seq[ind + 1] = seq[ind + 1], seq[ind]
-
 print(*seq)

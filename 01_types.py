@@ -7,5 +7,4 @@ import random
 seq = [True, 5j, {'Аргентина': 'Ямайка', 5: 0}, 5.0, 5, [5, 0],
        random.choice, random, None, range(10),
        {'Аргентина', 'Ямайка', 5, 0}, 'None', (5, 0), type(1)]
-
 print(*[type(i) for i in seq], sep='\n')
