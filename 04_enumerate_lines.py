@@ -2,4 +2,5 @@
 # Вывести каждое слово с новой строки. Строки необходимо пронумеровать.
 # Если в слово длинное, выводить только первые 10 букв в слове.
 
-print(f'{num}) {word[:10]}' for num, word in enumerate(input().split(), 1))
+for num, word in enumerate(input().split(), 1):
+    print(f'{num}) {word[:10]}')
