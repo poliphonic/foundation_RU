@@ -4,5 +4,5 @@
 
 s_list = [*['зима'] * 2, *['весна'] * 3, *['лето'] * 3, *['осень'] * 3, 'зима']
 s_dict = {key: value for key, value in enumerate(s_list, 1)}
-# print(s_list[int(input())])
+# print(s_list[int(input()) - 1])
 print(s_dict[int(input())])
