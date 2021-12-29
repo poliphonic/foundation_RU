@@ -2,7 +2,7 @@
 # какому времени года относится месяц (зима, весна, лето, осень).
 # Напишите решения через list и через dict.
 
-s_list = [*['зима'] * 2, *['весна'] * 3, *['лето'] * 3, *['осень'] * 3, 'зима']
-s_dict = {key: value for key, value in enumerate(s_list, 1)}
-# print(s_list[int(input()) - 1])
+s_list = ['зима', 'весна', 'лето', 'осень', 'зима']
+s_dict = {key: s_list[key // 3] for key in range(1, 13)}
+# print(s_list[int(input()) // 3])
 print(s_dict[int(input())])
