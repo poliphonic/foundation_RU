@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+# Реализовать функцию my_func(), которая принимает три позиционных
+# аргумента, и возвращает сумму наибольших двух аргументов.
+
+
+def my_func(num1, num2, num3):
+    """
+    num1: an integer
+    num2: an integer
+    num3: an integer
+    return: A sum of two biggest numbers.
+    """
+    seq = sorted([num1, num2, num3])
+    return seq[1] + seq[2]
+
+
+n1, n2, n3 = map(int, input('Введите три целых числа через пробел: ').split())
+print('Сумма двух самых больших из них равна', my_func(n1, n2, n3))
