@@ -8,11 +8,7 @@
 
 from sys import argv
 try:
-    seq = [int(i) for i in argv[1:]]
-    assert len(seq) == 3
+    hours, rate, bonus = map(int, argv[1:])
+    print(hours * rate + bonus)
 except ValueError:
-    print('All the parameters have to be integers')
-except AssertionError:
-    print('There must be exactly three parameters, no more no less')
-else:
-    print(seq[0] * seq[1] + seq[2])
+    print('There must be exactly three integers')

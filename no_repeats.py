@@ -9,4 +9,7 @@
 # Результат: [23, 1, 3, 10, 4, 11]
 
 seq = [int(i) for i in input('Введите целые числа через пробел: ').split()]
-print([item for item in seq if seq.count(item) < 2])
+d = {num: 0 for num in seq}
+for el in seq:
+    d[el] += 1
+print([item for item in d if d[item] < 2])

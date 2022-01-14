@@ -7,4 +7,4 @@
 # Подсказка: использовать функцию reduce().
 
 from functools import reduce
-print(reduce(lambda x, y: x * y, [i for i in range(100, 1001) if not i % 2]))
+print(reduce(lambda x, y: x * y, [i for i in range(100, 1001, 2)]))

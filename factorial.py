@@ -20,7 +20,5 @@ def fact(num):
         yield factorial
 
 
-for el in fact(int(input('Enter a natural number: '))):
-    print(el)
-
-
+for n, el in enumerate(fact(int(input('Enter a natural number: '))), 1):
+    print('{}! = {}'.format(n, el))
