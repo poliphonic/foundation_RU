@@ -47,12 +47,10 @@ class Cell:
 
     def __sub__(self, other):
         sub = self.partition - other.partition
-        try:
-            assert sub > 0
-        except AssertionError:
-            return 'The cells were annihilated'
-        else:
+        if sub > 0:
             return Cell(sub)
+        else:
+            return 'The cells were annihilated'
 
     def __mul__(self, other):
         return Cell(self.partition * other.partition)

@@ -32,13 +32,11 @@ class Matrix:
         return '\n'.join(['\t'.join(map(str, seq)) for seq in self.matrix])
 
     def __add__(self, other):
-        try:
-            assert self.shape == other.shape
-        except AssertionError:
-            return 'The matrices have to be the same shape!'
-        else:
+        if self.shape == other.shape:
             return Matrix([[a + b for a, b in zip(x, y)]
                            for x, y in zip(self.matrix, other.matrix)])
+        else:
+            return 'The matrices have to be the same shape!'
 
 
 m1 = Matrix([[31, 32], [37, 43], [51, 86]])
