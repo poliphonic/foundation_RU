@@ -92,17 +92,16 @@ class WorkCar(Car):
 
 class PoliceCar(Car):
 
-    def __init__(self, speed, color, name, is_police):
+    def __init__(self, speed, color, name):
         """
         speed: an integer
         color: a string
         name: a string
-        is_police: a boolean
         """
         super().__init__(speed, color, name, is_police=True)
 
 
-cooper = TownCar(68, 'red', 'Mini Cooper', False)
+cooper = TownCar(68, 'red', 'Mini Cooper')
 print(f'Name of the car - {cooper.name}')
 print(f'Its normal speed - {cooper.speed} miles per hour')
 print(f'Its color - {cooper.color}')
@@ -117,7 +116,7 @@ print(cooper.stop())
 cooper.show_speed()
 print()
 
-delorean = SportCar(88, 'silver', 'DeLorean', False)
+delorean = SportCar(88, 'silver', 'DeLorean')
 print(f'Name of the car - {delorean.name}')
 print(f'Its normal speed - {delorean.speed} miles per hour')
 print(f'Its color - {delorean.color}')
@@ -132,7 +131,7 @@ print(delorean.stop())
 delorean.show_speed()
 print()
 
-jeep = WorkCar(58, 'khaki', 'Jeep', False)
+jeep = WorkCar(58, 'khaki', 'Jeep')
 print(f'Name of the car - {jeep.name}')
 print(f'Its normal speed - {jeep.speed} miles per hour')
 print(f'Its color - {jeep.color}')
@@ -147,7 +146,7 @@ print(jeep.stop())
 jeep.show_speed()
 print()
 
-ford = PoliceCar(78, 'white', 'Ford', True)
+ford = PoliceCar(78, 'white', 'Ford')
 print(f'Name of the car - {ford.name}')
 print(f'Its normal speed - {ford.speed} miles per hour')
 print(f'Its color - {ford.color}')
