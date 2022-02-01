@@ -30,10 +30,9 @@ while num_str != '!':
             if char not in '1234567890.-':
                 raise NumsOnly
         seq.append(float(num_str) if '.' in num_str else (int(num_str)))
-    except NumsOnly as error:
+    except (ValueError, NumsOnly):
+        error = NumsOnly()
         print(error)
-    except ValueError:
-        print('Это не число!')
     finally:
         num_str = input()
 print(seq)
