@@ -44,27 +44,28 @@ class ExpandingStorage:
             inventory = f'There are {", ".join(inventory).lower()}'
         return f'{space} cu ft, {free}. {inventory}.'
 
-    def add_box(self, seq):
+    def add_box(self, item):
         """
-        seq: a list of box properties
+        item: object of MagicBox class
         return: a string with a massage of success
         change values of self.used and self.storage
         """
-        if seq[0] not in self.__storage:
+        if item.name not in self.__storage:
             print('You cannot add this item to the Storage. Try to cast.')
             return
-        self.__used += reduce(lambda x, y: x * y, seq[1:4])
+        measurements = [item.length, item.width, item.height]
+        self.__used += reduce(lambda x, y: x * y, measurements)
         while self.__used > self.__total:
             self.use_expand_spell()
             # there's no counter spell!
-        content = f'{seq[4]} {seq[5]}' if seq[4] else 'nothing'
-        self.__storage[seq[0]]['number'] += 1
-        self.__storage[seq[0]]['length'] += seq[1]
-        self.__storage[seq[0]]['width'] += seq[2]
-        self.__storage[seq[0]]['height'] += seq[3]
-        self.__storage[seq[0]]['content'] = content
-        item = f'The {seq[0].lower()}'
-        return f'{item} was successfully added to the Magic Expanding Storage.'
+        cnt = f'{item.quantity} {item.content}' if item.quantity else 'nothing'
+        self.__storage[item.name]['number'] += 1
+        self.__storage[item.name]['length'] += item.length
+        self.__storage[item.name]['width'] += item.width
+        self.__storage[item.name]['height'] += item.height
+        self.__storage[item.name]['content'] = cnt
+        name = f'The {item.name.lower()}'
+        return f'{name} was successfully added to the Magic Expanding Storage.'
 
     def use_expand_spell(self):
         """
@@ -74,30 +75,31 @@ class ExpandingStorage:
         self.__total = self.__num ** self.__num
         self.__num += 1
 
-    def take_box(self, box):
+    def take_box(self, item):
         """
-        box: a list of box properties
+        item: object of MagicBox class
         return: a string reported about request condition
         change values of self.used and self.storage
         """
-        if not self.__storage[box[0]]['number']:
+        if not self.__storage[item.name]['number']:
             return 'There is no such box in the Magic Expanding Storage.'
         else:
-            self.__storage[box[0]]['number'] -= 1
-            if not self.__storage[box[0]]['number']:
-                self.__storage[box[0]]['content'] = 'nothing'
-            self.__storage[box[0]]['length'] -= box[1]
-            self.__storage[box[0]]['width'] -= box[2]
-            self.__storage[box[0]]['height'] -= box[3]
-            self.__used -= reduce(lambda x, y: x * y, box[1:4])
+            self.__storage[item.name]['number'] -= 1
+            if not self.__storage[item.name]['number']:
+                self.__storage[item.name]['content'] = 'nothing'
+            self.__storage[item.name]['length'] -= item.length
+            self.__storage[item.name]['width'] -= item.width
+            self.__storage[item.name]['height'] -= item.height
+            measurements = [item.length, item.width, item.height]
+            self.__used -= reduce(lambda x, y: x * y, measurements)
             books, potions = 'Flourish & Blotts', 'Slug and Jiggers Apothecary'
             idk = 'no one knows where.'
-            if box[0] == 'Wand box':
+            if item.name == 'Wand box':
                 return 'The box with wands has been sent to "Ollivanders".'
-            elif box[0] == 'Spell book box':
-                return f'The box with spell books has been sent to {books}.'
-            elif box[0] == 'Potion box':
-                return f'The box with potions has been sent to {potions}.'
+            elif item.name == 'Spell book box':
+                return f'The box with spell books has been sent to "{books}".'
+            elif item.name == 'Potion box':
+                return f'The box with potions has been sent to "{potions}".'
             else:
                 return f'The magic box has been sent somewhere, {idk}'
 
@@ -114,21 +116,28 @@ class MagicBox:
         quantity: an integer
         content: a string
         """
-        self.info = [name, length, width, height, quantity, content]
+        self.name = name
+        self.length = length
+        self.width = width
+        self.height = height
+        self.quantity = quantity
+        self.content = content
         if not length % 2 and not width % 2 and not height % 2:
             self.reduce_box_spell()
 
     def __str__(self):
-        num = f'{self.info[4]} ' if self.info[4] else ''
-        return f'This is a {self.info[0]}. It contains {num}{self.info[5]}.'
+        num = f'{self.quantity} ' if self.quantity else ''
+        return f'This is a {self.name}. It contains {num}{self.content}.'
 
     def reduce_box_spell(self):
         """
         return: None
         change self.info if condition
         """
-        for num, i in enumerate(self.info[1:4], 1):
-            self.info[num] = self.info[num] // 2
+        self.length = self.length // 2
+        self.width = self.width // 2
+        self.height = self.height // 2
+        print(f'{self.name} was successfully reduced.')
 
 
 class WandBox(MagicBox):
@@ -153,7 +162,7 @@ class PotionBox(MagicBox):
 
 tent = ExpandingStorage()
 print(tent)
-empty = MagicBox()
+empty = MagicBox(length=2, width=2, height=2)
 print(empty)
 wand = WandBox()
 print(wand)
@@ -161,16 +170,19 @@ book = SpellBookBox()
 print(book)
 potion = PotionBox()
 print(potion)
-print(tent.add_box(empty.info))
-print(tent.add_box(wand.info))
-print(tent.add_box(book.info))
-print(tent.add_box(potion.info))
+print(tent.add_box(empty))
 print(tent)
-print(tent.take_box(empty.info))
+print(tent.add_box(wand))
 print(tent)
-print(tent.take_box(wand.info))
+print(tent.add_box(book))
 print(tent)
-print(tent.take_box(book.info))
+print(tent.add_box(potion))
 print(tent)
-print(tent.take_box(potion.info))
+print(tent.take_box(empty))
+print(tent)
+print(tent.take_box(wand))
+print(tent)
+print(tent.take_box(book))
+print(tent)
+print(tent.take_box(potion))
 print(tent)
